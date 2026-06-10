@@ -30,6 +30,7 @@ for (let i = 0; i < bestaandeSudokus.length; i++) {
 nieuweRegel.innerHTML = "<a href='#'>" + nummer + " ❌</a>";
 
 nieuweRegel.addEventListener("click", function () {
+    huidigeSudoku = nummer;
     sudokuLijst.style.display = "none";
     nieuweSudokuKnop.style.display = "none";
     titel.style.display = "none";
