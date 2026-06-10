@@ -113,6 +113,7 @@ for (let i = 0; i < opgeslagenSudokus.length; i++) {
     const nieuweRegel = document.createElement("li");
     nieuweRegel.innerHTML = "<a href='#'>" + opgeslagenSudokus[i] + " ❌</a>";
     nieuweRegel.addEventListener("click", function () {
+        huidigeSudoku = opgeslagenSudokus[i];
     sudokuLijst.style.display = "none";
     titel.style.display = "none";
     nieuweSudokuKnop.style.display = "none";
