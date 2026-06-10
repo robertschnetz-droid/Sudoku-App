@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    font-size: 24px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+input {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 24px;
+    border: none;
+}
+
+td {
+    border: 1px solid #999;
+}
+
+td:nth-child(3),
+td:nth-child(6) {
+    border-right: 5px solid black;
+}
+
+tr:nth-child(3) td,
+tr:nth-child(6) td {
+    border-bottom: 5px solid black;
+}
+
+table {
+    border: 3px solid black;
+}
+
+#vastzettenKnop {
+    display: none;
+}
+
+#opslaanKnop {
+    display: none;
+}
+
+#ladenKnop {
+    display: none;
+}
+
+#terugKnop {
+    display: none;
+}
