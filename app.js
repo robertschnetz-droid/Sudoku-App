@@ -88,6 +88,7 @@ alert("Sudoku opgeslagen");
 });
 
 ladenKnop.addEventListener("click", function () {
+    alert("huidigeSudoku = " + huidigeSudoku);
     const opgeslagenData = localStorage.getItem("sudoku" + huidigeSudoku);
 
     if (opgeslagenData) {
