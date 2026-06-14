@@ -69,6 +69,8 @@ nieuweRegel.addEventListener("click", function () {
 
 for (let j = 0; j < vakjes.length; j++) {
 
+    vakjes[j].readOnly = true;
+
     vakjes[j].addEventListener("click", function () {
 
         if (geselecteerdVakje) {
