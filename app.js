@@ -4,12 +4,25 @@ const sudokuLijst = document.getElementById("sudokuLijst");
 const sudokuBord = document.getElementById("sudokuBord");
 const vastzettenKnop = document.getElementById("vastzettenKnop");
 const opslaanKnop = document.getElementById("opslaanKnop");
-const ladenKnop = document.getElementById("ladenKnop");
 const terugKnop = document.getElementById("terugKnop");
+const verwijderenKnop = document.getElementById("verwijderenKnop");
+const toets1 = document.getElementById("toets1");
+const toets2 = document.getElementById("toets2");
+const toets3 = document.getElementById("toets3");
+const toets4 = document.getElementById("toets4");
+const toets5 = document.getElementById("toets5");
+const toets6 = document.getElementById("toets6");
+const toets7 = document.getElementById("toets7");
+const toets8 = document.getElementById("toets8");
+const toets9 = document.getElementById("toets9");
 let huidigeSudoku = "";
+let geselecteerdVakje = null;
 
 nieuweSudokuKnop.addEventListener("click", function () {
     const nummer = prompt("Welk puzzelnummer wil je aanmaken?");
+    if (nummer === null || nummer === "") {
+    return;
+}
     huidigeSudoku = nummer;
 const bestaandeSudokus = sudokuLijst.getElementsByTagName("li");
 
@@ -36,8 +49,17 @@ nieuweRegel.addEventListener("click", function () {
     titel.style.display = "none";
     vastzettenKnop.style.display = "block";
     opslaanKnop.style.display = "block";
-    ladenKnop.style.display = "block";
     terugKnop.style.display = "block";
+    toets1.style.display = "block";
+    toets2.style.display = "block";
+    toets3.style.display = "block";
+    toets4.style.display = "block";
+    toets5.style.display = "block";
+    toets6.style.display = "block";
+    toets7.style.display = "block";
+    toets8.style.display = "block";
+    toets9.style.display = "block";
+    verwijderenKnop.style.display = "block";
         sudokuBord.innerHTML =
         "<h2>Sudoku " + nummer + "</h2>" +
         "<table border='1'>" +
@@ -51,6 +73,22 @@ nieuweRegel.addEventListener("click", function () {
         "<tr><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td></tr>" +
         "<tr><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td></tr>" +
         "</table>";
+        const vakjes = sudokuBord.getElementsByTagName("input");
+
+for (let j = 0; j < vakjes.length; j++) {
+
+    vakjes[j].addEventListener("click", function () {
+
+        if (geselecteerdVakje) {
+            geselecteerdVakje.style.border = "";
+        }
+
+        geselecteerdVakje = this;
+        geselecteerdVakje.style.border = "3px solid blue";
+
+    });
+
+}
 });
 
 sudokuLijst.appendChild(nieuweRegel);
@@ -87,27 +125,25 @@ localStorage.setItem("sudoku" + huidigeSudoku, JSON.stringify(waarden));
 alert("Sudoku opgeslagen");
 });
 
-ladenKnop.addEventListener("click", function () {
-    alert("huidigeSudoku = " + huidigeSudoku);
-    const opgeslagenData = localStorage.getItem("sudoku" + huidigeSudoku);
+verwijderenKnop.addEventListener("click", function () {
 
-    if (opgeslagenData) {
-        const waarden = JSON.parse(opgeslagenData);
-        const vakjes = sudokuBord.getElementsByTagName("input");
+    if (confirm("Weet je zeker dat je Sudoku " + huidigeSudoku + " wilt verwijderen?")) {
 
-        for (let i = 0; i < vakjes.length; i++) {
-            vakjes[i].value = waarden[i].waarde;
-            vakjes[i].disabled = waarden[i].vastgezet;
-            if (waarden[i].vastgezet) {
-    vakjes[i].style.color = "red";
-}
-        }
+        localStorage.removeItem("sudoku" + huidigeSudoku);
 
-        alert("Sudoku geladen!");
-    } else {
-        alert("Geen opgeslagen sudoku gevonden.");
+        let opgeslagenSudokus = JSON.parse(localStorage.getItem("sudokuLijst")) || [];
+
+        opgeslagenSudokus = opgeslagenSudokus.filter(function(item) {
+            return item != huidigeSudoku;
+        });
+
+        localStorage.setItem("sudokuLijst", JSON.stringify(opgeslagenSudokus));
+
+        location.reload();
     }
+
 });
+
 const opgeslagenSudokus = JSON.parse(localStorage.getItem("sudokuLijst")) || [];
 
 for (let i = 0; i < opgeslagenSudokus.length; i++) {
@@ -120,8 +156,17 @@ for (let i = 0; i < opgeslagenSudokus.length; i++) {
     nieuweSudokuKnop.style.display = "none";
 vastzettenKnop.style.display = "block";
 opslaanKnop.style.display = "block";
-ladenKnop.style.display = "block";
 terugKnop.style.display = "block";
+toets1.style.display = "block";
+toets2.style.display = "block";
+toets3.style.display = "block";
+toets4.style.display = "block";
+toets5.style.display = "block";
+toets6.style.display = "block";
+toets7.style.display = "block";
+toets8.style.display = "block";
+toets9.style.display = "block";
+verwijderenKnop.style.display = "block";
 sudokuBord.innerHTML =
         "<h2>Sudoku " + opgeslagenSudokus[i] + "</h2>" +
         "<table border='1'>" +
@@ -135,6 +180,37 @@ sudokuBord.innerHTML =
         "<tr><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td></tr>" +
         "<tr><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td><td><input size='1'></td></tr>" +
         "</table>";
+        const vakjes = sudokuBord.getElementsByTagName("input");
+
+for (let j = 0; j < vakjes.length; j++) {
+
+    vakjes[j].addEventListener("click", function () {
+
+        if (geselecteerdVakje) {
+            geselecteerdVakje.style.border = "";
+        }
+
+        geselecteerdVakje = this;
+        geselecteerdVakje.style.border = "3px solid blue";
+
+    });
+
+}
+        const opgeslagenData = localStorage.getItem("sudoku" + huidigeSudoku);
+
+if (opgeslagenData) {
+    const waarden = JSON.parse(opgeslagenData);
+    const vakjes = sudokuBord.getElementsByTagName("input");
+
+    for (let j = 0; j < vakjes.length; j++) {
+        vakjes[j].value = waarden[j].waarde;
+        vakjes[j].disabled = waarden[j].vastgezet;
+
+        if (waarden[j].vastgezet) {
+            vakjes[j].style.color = "red";
+        }
+    }
+}
 });
 terugKnop.addEventListener("click", function () {
 
@@ -146,9 +222,73 @@ terugKnop.addEventListener("click", function () {
 
     vastzettenKnop.style.display = "none";
     opslaanKnop.style.display = "none";
-    ladenKnop.style.display = "none";
     terugKnop.style.display = "none";
+    toets1.style.display = "none";
+    toets2.style.display = "none";
+    toets3.style.display = "none";
+    toets4.style.display = "none";
+    toets5.style.display = "none";
+    toets6.style.display = "none";
+    toets7.style.display = "none";
+    toets8.style.display = "none";
+    toets9.style.display = "none";
+    verwijderenKnop.style.display = "none";
 
 });
+
     sudokuLijst.appendChild(nieuweRegel);
 }
+toets1.addEventListener("click", function () {
+
+    if (geselecteerdVakje && !geselecteerdVakje.disabled) {
+        geselecteerdVakje.value = "1";
+    }
+});
+
+toets2.addEventListener("click", function () {
+    if (geselecteerdVakje && !geselecteerdVakje.disabled) {
+        geselecteerdVakje.value = "2";
+    }
+});
+
+toets3.addEventListener("click", function () {
+    if (geselecteerdVakje && !geselecteerdVakje.disabled) {
+        geselecteerdVakje.value = "3";
+    }
+});
+
+toets4.addEventListener("click", function () {
+    if (geselecteerdVakje && !geselecteerdVakje.disabled) {
+        geselecteerdVakje.value = "4";
+    }
+});
+
+toets5.addEventListener("click", function () {
+    if (geselecteerdVakje && !geselecteerdVakje.disabled) {
+        geselecteerdVakje.value = "5";
+    }
+});
+
+toets6.addEventListener("click", function () {
+    if (geselecteerdVakje && !geselecteerdVakje.disabled) {
+        geselecteerdVakje.value = "6";
+    }
+});
+
+toets7.addEventListener("click", function () {
+    if (geselecteerdVakje && !geselecteerdVakje.disabled) {
+        geselecteerdVakje.value = "7";
+    }
+});
+
+toets8.addEventListener("click", function () {
+    if (geselecteerdVakje && !geselecteerdVakje.disabled) {
+        geselecteerdVakje.value = "8";
+    }
+});
+
+toets9.addEventListener("click", function () {
+    if (geselecteerdVakje && !geselecteerdVakje.disabled) {
+        geselecteerdVakje.value = "9";
+    }
+});
