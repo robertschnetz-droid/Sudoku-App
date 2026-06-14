@@ -78,6 +78,7 @@ for (let j = 0; j < vakjes.length; j++) {
 }
 
 geselecteerdVakje = this;
+this.blur();
 geselecteerdVakje.style.border = "3px solid blue";
 
 const popup = document.getElementById("popupMenu");
@@ -184,6 +185,7 @@ for (let j = 0; j < vakjes.length; j++) {
 }
 
 geselecteerdVakje = this;
+this.blur();
 geselecteerdVakje.style.border = "3px solid blue";
 
 const popup = document.getElementById("popupMenu");
