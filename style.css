@@ -147,3 +147,9 @@ table {
     text-align: center;
     border-bottom: none;
 }
+
+#nieuweSudoku {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
