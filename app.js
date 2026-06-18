@@ -256,7 +256,12 @@ terugKnop.addEventListener("click", function () {
     location.reload();
 
 });
-const opgeslagenSudokus = JSON.parse(localStorage.getItem("sudokuLijst")) || [];
+const opgeslagenSudokus =
+    JSON.parse(localStorage.getItem("sudokuLijst")) || [];
+
+opgeslagenSudokus.sort(function(a, b) {
+    return Number(a.nummer) - Number(b.nummer);
+});
 
 for (let i = 0; i < opgeslagenSudokus.length; i++) {
     const nieuweRegel = document.createElement("li");

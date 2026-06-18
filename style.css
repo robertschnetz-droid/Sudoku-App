@@ -135,3 +135,15 @@ table {
 #sudokuBord table {
     margin: 0 auto;
 }
+
+#sudokuLijst {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+#sudokuLijst li {
+    border: 1px solid #ddd;
+    text-align: center;
+    border-bottom: none;
+}
