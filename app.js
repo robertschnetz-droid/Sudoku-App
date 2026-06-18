@@ -93,7 +93,7 @@ const popup = document.getElementById("popupMenu");
 popup.style.display = "block";
 const rect = this.getBoundingClientRect();
 
-popup.style.left = rect.left + "px";
+popup.style.left = (window.innerWidth - popup.offsetWidth) / 2 + "px";
 popup.style.top = (rect.bottom + window.scrollY + 5) + "px";
 
     });
